@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#0000FF"
+        android:gravity="center"
+        android:text="沙宣会员管理系统"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#FFB6C1"
+        android:text="点击新建会员"
+        android:textColor="#696969" />
+
+    <Button
+        android:id="@+id/select_btn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFB6C1"
+        android:text="点击查看会员列表"
+        android:textColor="#696969" />
+
+    <Button
+        android:id="@+id/del_btn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFB6C1"
+        android:text="点击删除全部数据"
+        android:textColor="#696969"
+        android:visibility="visible" />
+
+</LinearLayout>
