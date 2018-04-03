@@ -28,18 +28,15 @@ public class SaveDataToFile {
         //创建File对象
         File file = new File(Environment.getExternalStorageDirectory(), fileName);
         List<Map<String, Object>> mapList = new ArrayList<>();
-//        if (fileIsExists("shaXuan.txt")) {
-        mapList = getDataFromSDcard("shaXuan.txt");
-
-        if (pos >= 0) {
-            mapList.remove(pos);
-//            mapList.add(pos, newMap);
+        if (file.exists()) {
+            mapList = getDataFromSDcard("shaXuan.txt");
+            if (pos >= 0) {
+                mapList.remove(pos);
+            }
+            for (int i = 0; i < mapList.size(); i++) {
+                list.add(mapList.get(i));
+            }
         }
-
-        for (int i = 0; i < mapList.size(); i++) {
-            list.add(mapList.get(i));
-        }
-//        }
         //将list转成String类型
         List<String> cache = new ArrayList<String>();
         for (int i = 0; i < list.size(); i++) {
@@ -78,38 +75,41 @@ public class SaveDataToFile {
     public static List<Map<String, Object>> getDataFromSDcard(String fileName) {
         //读取文件内容保存到resultStr
         String resultStr = null;
-        File file = new File(Environment.getExternalStorageDirectory(), fileName);
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            byte[] b = new byte[fileInputStream.available()];
-            fileInputStream.read(b);
-            resultStr = new String(b);
-            if (fileInputStream != null) {
-                fileInputStream.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("读文件出错");
-        }
         //将读取的String结果转化成List<>
         List<Map<String, Object>> tempList = new ArrayList<Map<String, Object>>();
-        try {
-            JSONArray jsonArray = new JSONArray(resultStr);
-            if (jsonArray.length() > 0) {
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
-                    HashMap<String, Object> map = new HashMap<String, Object>();
-                    map.put("name", jsonObject.get("name"));
-                    map.put("phoneNumber", jsonObject.get("phoneNumber"));
-                    map.put("totalCount", jsonObject.get("totalCount"));
-                    map.put("describe", jsonObject.get("describe"));
-                    map.put("ysyCount", jsonObject.get("ysyCount"));
-                    tempList.add(map);
+        File file = new File(Environment.getExternalStorageDirectory(), fileName);
+        if (file.exists()) {
+            try {
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] b = new byte[fileInputStream.available()];
+                fileInputStream.read(b);
+                resultStr = new String(b);
+                if (fileInputStream != null) {
+                    fileInputStream.close();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("读文件出错");
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            System.out.println("转化list出错");
+
+            try {
+                JSONArray jsonArray = new JSONArray(resultStr);
+                if (jsonArray.length() > 0) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
+                        HashMap<String, Object> map = new HashMap<String, Object>();
+                        map.put("name", jsonObject.get("name"));
+                        map.put("phoneNumber", jsonObject.get("phoneNumber"));
+                        map.put("totalCount", jsonObject.get("totalCount"));
+                        map.put("describe", jsonObject.get("describe"));
+                        map.put("ysyCount", jsonObject.get("ysyCount"));
+                        tempList.add(map);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                System.out.println("转化list出错");
+            }
         }
         return tempList;
     }
