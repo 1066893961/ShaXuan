@@ -9,10 +9,18 @@ import com.example.administrator.shaxuan.crash.CrashHandler;
  */
 
 public class CrashApplication extends Application {
+    public static CrashApplication mInstance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mInstance = this;
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
+    }
+
+    public static CrashApplication getInstance() {
+        return mInstance;
     }
 }

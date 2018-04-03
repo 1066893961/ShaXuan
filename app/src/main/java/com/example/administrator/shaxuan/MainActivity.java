@@ -1,7 +1,10 @@
 package com.example.administrator.shaxuan;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +12,7 @@ import android.widget.Button;
 import com.example.administrator.shaxuan.ui.AddMemberActivity;
 import com.example.administrator.shaxuan.ui.SelectAllMemberActivity;
 import com.example.administrator.shaxuan.util.SaveDataToFile;
+import com.example.administrator.shaxuan.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +34,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && this.checkSelfPermission(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            this.requestPermissions(new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, 1);
+
+        }
         initView();
     }
 
@@ -64,8 +77,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 map.put("ysyCount", 0);
                 map.put("describe", "test");
                 list.add(map);
-                System.out.print(list.get(10));
                 SaveDataToFile.delDataToSDcard("shaXuan.txt", list);
+                ToastUtil.showShort(getApplicationContext(), "删除成功");
+                break;
+            default:
                 break;
         }
 
