@@ -1,5 +1,6 @@
 package com.example.administrator.shaxuan.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -79,6 +80,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
 
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -103,12 +105,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
                 newMap.put("ysyCount", ysyCount);
                 newMap.put("describe", describe);
                 mapList.add(newMap);
-
-//                maps.remove(pos);
-//                maps.add(pos, newMap);
                 SaveDataToFile.saveDataToSDcard("shaXuan.txt", mapList, newMap, pos);
-
-
                 break;
         }
     }
