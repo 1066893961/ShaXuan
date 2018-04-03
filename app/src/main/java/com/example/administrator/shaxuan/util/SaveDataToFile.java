@@ -22,7 +22,7 @@ public class SaveDataToFile {
 
 
     //保存数据到SD卡文件
-    public static boolean saveDataToSDcard(String fileName, List<Map<String, Object>> list, Map<String, Object> newMap, int pos) {
+    public static boolean saveDataToSDcard(String fileName, List<Map<String, Object>> list, int pos) {
         boolean isAvailable = false;    //SD是否可读
         FileOutputStream fileOutputStream = null;
         //创建File对象
@@ -30,6 +30,7 @@ public class SaveDataToFile {
         List<Map<String, Object>> mapList = new ArrayList<>();
         if (file.exists()) {
             mapList = getDataFromSDcard("shaXuan.txt");
+
             if (pos >= 0) {
                 mapList.remove(pos);
             }

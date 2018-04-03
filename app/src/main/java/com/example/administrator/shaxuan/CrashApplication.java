@@ -2,6 +2,7 @@ package com.example.administrator.shaxuan;
 
 import android.app.Application;
 
+import com.example.administrator.shaxuan.constant.GlobalConfigContants;
 import com.example.administrator.shaxuan.crash.CrashHandler;
 
 /**
@@ -16,8 +17,10 @@ public class CrashApplication extends Application {
         super.onCreate();
 
         mInstance = this;
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(getApplicationContext());
+        if (GlobalConfigContants.isOpenCrashHandle) {
+            CrashHandler crashHandler = CrashHandler.getInstance();
+            crashHandler.init(getApplicationContext());
+        }
     }
 
     public static CrashApplication getInstance() {

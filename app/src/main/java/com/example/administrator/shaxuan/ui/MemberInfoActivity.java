@@ -25,7 +25,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
     private int pos;
     private List<Map<String, Object>> maps = new ArrayList<>();
     private Map<String, Object> map = new HashMap<>();
-    private TextView mNameTv, mPhoneNumberTv, mTotalTv, mYsyTv, mSurplusTv, mDescribeTv;
+    private TextView mNameTv, mPhoneNumberTv, mTotalTv, mYsyTv, mSurplusTv, mDescribeTv, mTitleTv;
     private Button mSubtractBtn;
     private int ysyCount = 0;
     private int total;
@@ -51,6 +51,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
         mYsyTv = (TextView) findViewById(R.id.yishiyong_tv);
         mSurplusTv = (TextView) findViewById(R.id.surplus_tv);
         mDescribeTv = (TextView) findViewById(R.id.describe_tv);
+        mTitleTv = (TextView) findViewById(R.id.title_tv);
         mSubtractBtn = (Button) findViewById(R.id.subtract_btn);
         mSubtractBtn.setOnClickListener(this);
     }
@@ -71,6 +72,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
     }
 
     private void setData() {
+        mTitleTv.setText(name + "信息页");
         mNameTv.setText("姓名：" + name);
         mPhoneNumberTv.setText("手机号：" + phoneNumber);
         mTotalTv.setText("总次数：" + total + "次");
@@ -105,7 +107,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
                 newMap.put("ysyCount", ysyCount);
                 newMap.put("describe", describe);
                 mapList.add(newMap);
-                SaveDataToFile.saveDataToSDcard("shaXuan.txt", mapList, newMap, pos);
+                SaveDataToFile.saveDataToSDcard("shaXuan.txt", mapList, pos);
                 break;
         }
     }
