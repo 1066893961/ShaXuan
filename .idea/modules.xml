@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ShaXuan.iml" filepath="$PROJECT_DIR$/.idea/ShaXuan.iml" />
-      <module fileurl="file://F:\workspace3\ShaXuan\.idea\ShaXuan.iml" filepath="F:\workspace3\ShaXuan\.idea\ShaXuan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShaXuan.iml" filepath="$PROJECT_DIR$/ShaXuan.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:\workspace3\ShaXuan\app\app.iml" filepath="F:\workspace3\ShaXuan\app\app.iml" />
     </modules>
   </component>
 </project>
