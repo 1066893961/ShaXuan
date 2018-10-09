@@ -71,6 +71,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private void setData() {
         mTitleTv.setText(name + "信息页");
         mNameTv.setText("姓名：" + name);
@@ -79,6 +80,12 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
         mYsyTv.setText("已使用：" + ysyCount + "次");
         mSurplusTv.setText("剩余" + sy + "次");
         mDescribeTv.setText(describe);
+
+        if (sy == 0) {
+            mSubtractBtn.setClickable(false);
+            mSubtractBtn.setBackgroundColor(R.color.colorPrimary);
+            mSubtractBtn.setText("不可用");
+        }
 
     }
 

@@ -15,12 +15,8 @@ import com.example.administrator.shaxuan.util.SaveDataToFile;
 import com.example.administrator.shaxuan.util.ToastUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.R.attr.name;
-import static android.R.attr.phoneNumber;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -70,13 +66,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.del_btn:
                 List<Map<String, Object>> list = new ArrayList<>();
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("name", name);
-                map.put("phoneNumber", phoneNumber);
-                map.put("totalCount", 10);
-                map.put("ysyCount", 0);
-                map.put("describe", "test");
-                list.add(map);
+//                HashMap<String, Object> map = new HashMap<>();
+//                map.put("name", name);
+//                map.put("phoneNumber", phoneNumber);
+//                map.put("totalCount", 10);
+//                map.put("ysyCount", 0);
+//                map.put("describe", "test");
+//                list.add(map);
                 SaveDataToFile.delDataToSDcard("shaXuan.txt", list);
                 ToastUtil.showShort(getApplicationContext(), "删除成功");
                 break;

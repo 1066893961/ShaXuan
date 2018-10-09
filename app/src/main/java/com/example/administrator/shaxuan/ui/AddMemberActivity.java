@@ -62,7 +62,6 @@ public class AddMemberActivity extends Activity implements View.OnClickListener 
     }
 
     private void checkData(String name, String phoneNumber, String syCount) {
-        int sy = Integer.valueOf(syCount);
 
         if (name.equals("")) {
             ToastUtil.showShort(getApplicationContext(), "请填写会员姓名！");
@@ -70,12 +69,10 @@ public class AddMemberActivity extends Activity implements View.OnClickListener 
             ToastUtil.showShort(getApplicationContext(), "请填写会员手机号！");
         } else if (!Isephone.getInstance().isPhone(phoneNumber)) {
             ToastUtil.showShort(getApplicationContext(), "请填写正确的手机号！");
-        } else if (syCount.equals("")) {
+        } else if (syCount.isEmpty()) {
             ToastUtil.showShort(getApplicationContext(), "请填写剩余次数！");
-        } else if (sy >= 11) {
-            ToastUtil.showShort(getApplicationContext(), "最多不能超过10次！");
         } else {
-            addData(name, phoneNumber, sy);
+            addData(name, phoneNumber, Integer.valueOf(syCount));
         }
     }
 

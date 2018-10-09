@@ -186,4 +186,45 @@ public class SaveDataToFile {
         }
         return isAvailable;
     }
+
+
+    //清除数据
+    public static boolean delDataForPos(String fileName, List<Map<String, Object>> list, int pos) {
+        boolean isAvailable = false;    //SD是否可读
+        FileOutputStream fileOutputStream = null;
+        //创建File对象
+        File file = new File(Environment.getExternalStorageDirectory(), fileName);
+        List<Map<String, Object>> mapList = new ArrayList<>();
+        mapList = getDataFromSDcard("shaXuan.txt");
+        for (int i = 0; i < mapList.size(); i++) {
+            list.add(mapList.get(i));
+        }
+        list.remove(pos);
+        //将list转成String类型
+        List<String> cache = new ArrayList<String>();
+        for (int i = 0; i < list.size(); i++) {
+            // 取出当前的Map，转化为JSONObject
+            JSONObject obj = new JSONObject(list.get(i));
+            // 转化为字符串并添加进新的List中
+            cache.add(obj.toString());
+        }
+        // 可存储的字符串数据
+        String listStr = cache.toString();
+
+        //判断SD卡是否可读写
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            isAvailable = true;
+            try {
+                fileOutputStream = new FileOutputStream(file);
+                fileOutputStream.write(listStr.getBytes());
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return isAvailable;
+    }
 }

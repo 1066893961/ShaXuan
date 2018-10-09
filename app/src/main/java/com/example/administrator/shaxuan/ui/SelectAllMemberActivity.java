@@ -46,9 +46,6 @@ public class SelectAllMemberActivity extends Activity {
 
         allMemberAdapter = new AllMemberAdapter(getApplicationContext(), list);
         mRey.setAdapter(allMemberAdapter);
-        //…Ë÷√∑÷∏Ùœﬂ
-//        mRey.addItemDecoration( new DividerGridItemDecoration(this));
-
         allMemberAdapter.setOnItemClicklistener(new AllMemberAdapter.MyItemClickListener() {
             @Override
             public void onItemClick(View view, int postion) {
@@ -58,5 +55,6 @@ public class SelectAllMemberActivity extends Activity {
                 startActivity(intent);
             }
         });
+
     }
 }
